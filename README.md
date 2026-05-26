@@ -142,10 +142,11 @@ docs/assets/         README 图片与公开素材
 | 问题 | 解决方法 |
 | --- | --- |
 | `wx daemon 未运行` | 先运行 `wx daemon start`，再刷新页面。 |
-| `better-sqlite3` native 模块报错 | 运行 `pnpm rebuild better-sqlite3`。 |
-| 首页没有数据 | 先完成 `/setup`，确认 `wx sessions --json` 有输出，然后点击“重扫”。 |
-| 话题雷达为空 | 打开对应日期会自动构建；也可以点击“构建话题”。需要本机可运行 `codex`。 |
+| `better-sqlite3` native 模块报错 | 运行 `pnpm rebuild better-sqlite3`。若仍然报错（提示找不到 bindings），则需要从源码编译：`npm_config_build_from_source=true pnpm install`，然后再 `pnpm rebuild better-sqlite3`。 |
+| 首页没有数据 | 先完成 `/setup`，确认 `wx sessions --json` 有输出，然后点击”重扫”。 |
+| 话题雷达为空 | 打开对应日期会自动构建；也可以点击”构建话题”。需要本机可运行 `codex`。 |
 | 不想读取真实微信 | 在 `/setup` 勾选 demo 模式，或设置 `WECHAT_RADAR_DEMO=1`。 |
+| macOS 上 better-sqlite3 编译失败 | 确保已安装 Xcode Command Line Tools：`xcode-select --install`。然后重试 `npm_config_build_from_source=true pnpm install`。 |
 
 ## 致谢
 
@@ -207,9 +208,10 @@ Safety guidance:
 | Problem | Fix |
 | --- | --- |
 | wx daemon is not running | Run `wx daemon start`. |
-| better-sqlite3 fails to load | Run `pnpm rebuild better-sqlite3`. |
+| better-sqlite3 fails to load | Run `pnpm rebuild better-sqlite3`. If it still fails (bindings not found), compile from source: `npm_config_build_from_source=true pnpm install`, then `pnpm rebuild better-sqlite3`. |
 | No dashboard data | Finish `/setup`, confirm `wx sessions --json` works, then click rescan. |
 | Topic radar is empty | Open the date or click build topics; make sure `codex` is available. |
+| better-sqlite3 build fails on macOS | Install Xcode Command Line Tools first: `xcode-select --install`. Then retry `npm_config_build_from_source=true pnpm install`. |
 
 ## License
 
